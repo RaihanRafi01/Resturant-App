@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_raihan/screens/auth/signup_data.dart';
 import 'package:restaurant_raihan/screens/auth/signup_step3.dart';
 
 class SignUpStep2Screen extends StatefulWidget {
-  const SignUpStep2Screen({super.key});
+  final SignUpData signUpData;
+
+  const SignUpStep2Screen({super.key, required this.signUpData});
 
   @override
   State<StatefulWidget> createState() => _SignUpStep2Screen();
@@ -99,16 +102,22 @@ class _SignUpStep2Screen extends State<SignUpStep2Screen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
+                      // Collect occasion and date data
+                      for (int i = 0; i < occasionControllers.length; i++) {
+                        widget.signUpData.occasionList!.add(occasionControllers[i].text);
+                        widget.signUpData.dateList!.add(dateControllers[i].text);
+                      }
+
+                      // Navigate to Step 3 and pass signUpData
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SignUpStep3Screen(),
+                          builder: (context) => SignUpStep3Screen(signUpData: widget.signUpData),
                         ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                      const Color.fromRGBO(255, 131, 51, 1),
+                      backgroundColor: const Color.fromRGBO(255, 131, 51, 1),
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
