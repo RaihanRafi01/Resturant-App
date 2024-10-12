@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_raihan/screens/auth/signup.dart';
+import 'package:restaurant_raihan/screens/auth/signup_step1.dart';
 
 class AuthLandingScreen extends StatelessWidget {
   const AuthLandingScreen({super.key});

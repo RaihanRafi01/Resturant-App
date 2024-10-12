@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_raihan/screens/auth/signup_step4.dart';
 
 class SignUpStep3Screen extends StatefulWidget {
   const SignUpStep3Screen({super.key});
@@ -127,7 +128,12 @@ class _SignUpStep3Screen extends State<SignUpStep3Screen> {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          // Add logic to use _otherCuisineController.text if "Other" is selected
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SignUpStep4Screen(),
+            ),
+          );
           if (_selectedCuisine == 9) {
             print("User specified cuisine: ${_otherCuisineController.text}");
           }

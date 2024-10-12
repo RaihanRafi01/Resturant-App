@@ -9,184 +9,134 @@ class SignUpStep2Screen extends StatefulWidget {
 }
 
 class _SignUpStep2Screen extends State<SignUpStep2Screen> {
-  final TextEditingController occasionController1 = TextEditingController();
-  final TextEditingController occasionController2 = TextEditingController();
-  final TextEditingController occasionController3 = TextEditingController();
+  final List<TextEditingController> occasionControllers = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+  ];
+  final List<TextEditingController> dateControllers = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+  ];
 
-  Future<void> _selectDate(BuildContext context, int occasion) async {
+  Future<void> _selectDate(BuildContext context, int index) async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-
     if (pickedDate != null) {
       setState(() {
-        if (occasion == 1) {
-          occasionController1.text =
-          "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-        }
-        if (occasion == 2) {
-          occasionController2.text =
-          "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-        }
-        if (occasion == 3) {
-          occasionController3.text =
-          "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-        }
+        dateControllers[index].text =
+        "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
       });
     }
+  }
+
+  Widget _buildOccasionField(int index) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Occasion ${index + 1}'),
+        const SizedBox(height: 5),
+        TextField(
+          controller: occasionControllers[index],
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        const Text('Date'),
+        const SizedBox(height: 5),
+        TextField(
+          controller: dateControllers[index],
+          readOnly: true,
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+            ),
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.date_range),
+              onPressed: () => _selectDate(context, index),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Step 2'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Step 2'), centerTitle: true),
       body: Stack(
         children: [
           Positioned(
             bottom: 0,
             child: Opacity(
-              opacity: 0.1, // Set opacity for the background image
-              child: Image.asset(
-                'assets/images/auth_back.png', // Path to your background image
-              ),
+              opacity: 0.1,
+              child: Image.asset('assets/images/auth_back.png'),
             ),
           ),
-          SingleChildScrollView( // Wrap the content in a scrollable view
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Do you have any special occasions you\'d like us to remind you about?',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('Occasion 1'),
-                  const SizedBox(height: 5),
-                  const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)), // Rounded corners
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('Date'),
-                  const SizedBox(height: 5),
-                  TextField(
-                    controller: occasionController1,
-                    readOnly: true, // Prevents manual editing
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)), // Rounded corners
-                      ),
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.date_range),
-                        onPressed: () {
-                          _selectDate(context, 1);
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('Occasion 2'),
-                  const SizedBox(height: 5),
-                  const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)), // Rounded corners
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('Date'),
-                  const SizedBox(height: 5),
-                  TextField(
-                    controller: occasionController2,
-                    readOnly: true, // Prevents manual editing
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)), // Rounded corners
-                      ),
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.date_range),
-                        onPressed: () {
-                          _selectDate(context, 2);
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('Occasion 3'),
-                  const SizedBox(height: 5),
-                  const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)), // Rounded corners
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('Date'),
-                  const SizedBox(height: 5),
-                  TextField(
-                    controller: occasionController3,
-                    readOnly: true, // Prevents manual editing
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)), // Rounded corners
-                      ),
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.date_range),
-                        onPressed: () {
-                          _selectDate(context, 3);
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 60), // Add extra space before the button
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpStep3Screen(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                        const Color.fromRGBO(255, 131, 51, 1), // Set login button color
-                        padding: const EdgeInsets.symmetric(vertical: 15), // Vertical padding
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), // Rounded corners
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Do you have any special occasions you\'d like us to remind you about?',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 10),
+                for (int i = 0; i < 3; i++) _buildOccasionField(i),
+                const SizedBox(height: 60),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpStep3Screen(),
                         ),
-                      ),
-                      child: const Text(
-                        'Next',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                      const Color.fromRGBO(255, 131, 51, 1),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
+                    child: const Text(
+                      'Next',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
                   ),
-                  const SizedBox(height: 60), // Optional: extra space after button
-                ],
-              ),
+                ),
+                const SizedBox(height: 60),
+              ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    for (var controller in occasionControllers) {
+      controller.dispose();
+    }
+    for (var controller in dateControllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 }
