@@ -51,7 +51,7 @@ class StartScreen extends StatelessWidget {
                   onTap: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => OnBoardingScreen()),
+                      MaterialPageRoute(builder: (context) => const OnBoardingScreen()),
                     );
                   },
                   child: Image.asset(

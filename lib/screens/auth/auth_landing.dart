@@ -42,7 +42,7 @@ class AuthLandingScreen extends StatelessWidget {
                         'assets/images/appname.png',
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     const Text(
                       'Let’s get started!',
                       style: TextStyle(
@@ -51,15 +51,15 @@ class AuthLandingScreen extends StatelessWidget {
                         fontWeight: FontWeight.w700
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Login to Stay healthy and fit',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
                     // Gap of 20px between the image and buttons
                     // Login Button with fixed width
@@ -71,13 +71,13 @@ class AuthLandingScreen extends StatelessWidget {
                           // Navigate to login screen
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(255, 131, 51, 1), // Set login button color
-                          padding: EdgeInsets.symmetric(vertical: 15), // Vertical padding
+                          backgroundColor: const Color.fromRGBO(255, 131, 51, 1), // Set login button color
+                          padding: const EdgeInsets.symmetric(vertical: 15), // Vertical padding
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8), // Rounded corners
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Login',
                           style: TextStyle(
                             color: Colors.white,
@@ -86,7 +86,7 @@ class AuthLandingScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16), // Space between buttons
+                    const SizedBox(height: 16), // Space between buttons
                     // Registration Button with fixed width
                     SizedBox(
                       width: 317,
@@ -95,15 +95,15 @@ class AuthLandingScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => SignUpScreen()),
+                            MaterialPageRoute(builder: (context) => const SignUpScreen()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white, // Button background color
-                          padding: EdgeInsets.symmetric(vertical: 15), // Vertical padding
+                          padding: const EdgeInsets.symmetric(vertical: 15), // Vertical padding
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8), // Rounded corners
-                            side: BorderSide(
+                            side: const BorderSide(
                               color: Color.fromRGBO(255, 131, 51, 1), // Orange border color
                               width: 1, // Border width (adjust as needed)
                             ),

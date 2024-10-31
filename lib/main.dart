@@ -1,7 +1,9 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:restaurant_raihan/screens/auth/auth_landing.dart';
 import 'package:restaurant_raihan/screens/onboarding/obboarding_screen.dart';
 import 'package:restaurant_raihan/screens/onboarding/start_screen.dart';
+import 'package:restaurant_raihan/screens/test/image_picker.dart';
 
 
 void main() async {
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: AuthLandingScreen(), // Home screen where the button is
+      home: ImagePickerWidget(), // Home screen where the button is
     );
   }
 }
@@ -44,3 +46,29 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+*/
+
+
+import 'package:flutter/material.dart';
+import 'package:restaurant_raihan/screens/test/image_picker.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Custom Camera Picker',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const ImagePickerWidget(),
+    );
+  }
+}
+
+
